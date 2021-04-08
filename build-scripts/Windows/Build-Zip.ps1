@@ -53,7 +53,7 @@ $Configuration = @{
     ProductsPath = $ProductsPath
 
     SwiftVersion = 5
-    EnableTesting = $true
+    EnableTesting = $false
     BuildType = "Release"
     EnableOptimization = $true
 
