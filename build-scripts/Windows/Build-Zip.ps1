@@ -6,9 +6,6 @@ Param(
 $ProjectRoot = "$(Resolve-Path ""$PSScriptRoot\..\.."")"
 $SourcesPath = "$ProjectRoot\Zip"
 
-$ToolchainPath = "C:\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain"
-$SDKPath = "C:\Library\Developer\Platforms\Windows.platform\Developer\SDKs\Windows.sdk"
-
 $SourceFiles = Get-ChildItem -Path "$SourcesPath\*.swift" -Recurse -File
 
 $ModuleName = "Zip"
@@ -42,9 +39,6 @@ if (-Not $S3Key) {
 }
 
 $Configuration = @{
-    ToolchainPath = $ToolchainPath
-    SDKPath = $SDKPath
-    
     ModuleName = $ModuleName
 
     WorkPath = $ProjectRoot
@@ -52,8 +46,6 @@ $Configuration = @{
     IntermediatesPath = $IntermediatesPath
     ProductsPath = $ProductsPath
 
-    SwiftVersion = 5
-    EnableTesting = $false
     BuildType = "Release"
     EnableOptimization = $true
 
@@ -62,13 +54,11 @@ $Configuration = @{
     LibrarySearchPaths = $LibrarySearchPaths
 
     SourceFiles = $SourceFiles
-
-    Libraries = @()
 }
 
 Push-Task -Name $ModuleName -ScriptBlock {    
     Push-Task -Name "Initialize" -ScriptBlock {
-        Invoke-VsDevCmd -Version "2019"
+        Invoke-VsDevCmd -Version "2022"
 
         Initialize-Toolchain
         Initialize-SDK
