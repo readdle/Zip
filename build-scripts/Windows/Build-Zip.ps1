@@ -94,7 +94,6 @@ Push-Task -Name $ModuleName -ScriptBlock {
         Install-File "$ProductsPath\$ModuleName.dll" -Destination $BinDir
         Install-File "$ProductsPath\$ModuleName.swiftdoc" -Destination $IncludeDir
         Install-File "$ProductsPath\$ModuleName.swiftmodule" -Destination $IncludeDir
-        Install-File "$ProductsPath\$ModuleName.exp" -Destination $LibDir
         Install-File "$ProductsPath\$ModuleName.lib" -Destination $LibDir
    }
 }
